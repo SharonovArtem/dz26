@@ -13,14 +13,20 @@ namespace jun1
     {
         static void Main(string[] args)
         {
-            int[] numbers = {1, 2, 3, 4};
+            int[] numbers = new int[8];
+            Random random = new Random();
             int checkNumber = 1;
             int firstNumber = 0;
-            int lastNumber = 3;
+            int lastNumber = 7;
             string userInput;
             int lastNumberValue;
             int firstNumberValue;
             bool isWorking = true;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = random.Next(1, 10);
+            }
 
             while (isWorking)
             {
@@ -37,21 +43,12 @@ namespace jun1
                     lastNumberValue = numbers[lastNumber];
                     firstNumberValue = numbers[firstNumber];
 
-                    for (int j = 0; j < numbers.Length; j++)
-                    {
-                        if (j != lastNumber)
-                        {
-                            numbers[j] = numbers[j + checkNumber];
-                        }
-                        else if (j == lastNumber - checkNumber)
-                        {
-                            numbers[j] = lastNumberValue;
-                        }
-                        else if (j == lastNumber)
-                        {
-                            numbers[j] = firstNumberValue;
-                        }
+                    for (int j = 0; j < numbers.Length - 1; j++)
+                    {                                                    
+                        numbers[j] = numbers[j + checkNumber];    
                     }
+
+                    numbers[lastNumber] = firstNumberValue;
                 }
             }
         }
